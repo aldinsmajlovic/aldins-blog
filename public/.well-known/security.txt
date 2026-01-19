@@ -1,0 +1,6 @@
+Contact: mailto:security@aldinsmajlovic.se
+Expires: 2027-12-29T23:00:00.000Z
+Encryption: https://aldinsmajlovic.se/pgp-key.txt
+Acknowledgments: https://aldinsmajlovic.se/hall-of-fame
+Preferred-Languages: en, sv
+Canonical: https://blog.aldinsmajlovic.se/.well-known/security.txt
