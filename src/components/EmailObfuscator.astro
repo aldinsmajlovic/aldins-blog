@@ -1,0 +1,17 @@
+---
+// This is your email: aldin@aldinsmajlovic.se
+// Encoded in Base64: YWxkaW5AYWxkaW5zbWFqbG92aWMuc2U=
+---
+
+<a href="#" id="email-link">Loading contact...</a>
+
+<script>
+    const encoded = "YWxkaW5AYWxkaW5zbWFqbG92aWMuc2U=";
+    const email = atob(encoded);
+    const link = document.getElementById('email-link');
+    
+    if (link) {
+        link.href = "mailto:" + email;
+        link.textContent = email;
+    }
+</script>

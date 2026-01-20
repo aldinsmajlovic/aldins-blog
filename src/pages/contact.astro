@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<Layout
+	title="Contact"
+	description="Connect with Aldin Smajlovic"
+	pubDate={new Date('2026-01-20')}
+>
+	<div class="contact-grid">
+		<a href="#" id="email-link" class="contact-card">
+			<span class="label">Email</span>
+			<span class="value">revealing...</span>
+		</a>
+		<a href="https://linkedin.com/in/aldinsmajlovic" target="_blank" class="contact-card">
+			<span class="label">LinkedIn</span>
+			<span class="value">/in/aldinsmajlovic</span>
+		</a>
+		<a href="https://github.com/aldinsmajlovic" target="_blank" class="contact-card">
+			<span class="label">GitHub</span>
+			<span class="value">/aldinsmajlovic</span>
+		</a>
+	</div>
+</Layout>
+
+<script>
+	const encoded = "YWxkaW5AYWxkaW5zbWFqbG92aWMuc2U=";
+	const email = atob(encoded);
+	const link = document.getElementById('email-link');
+	if (link) {
+		link.setAttribute('href', 'mailto:' + email);
+		const val = link.querySelector('.value');
+		if (val) val.textContent = email;
+	}
+</script>
+
+<style>
+	.contact-grid { display: grid; gap: 1rem; margin-top: 2rem; }
+	.contact-card { 
+		display: flex; justify-content: space-between; align-items: center;
+		padding: 1.25rem 1.5rem; background: var(--bg-surface); 
+		border: 1px solid var(--border); border-radius: 8px;
+		text-decoration: none; transition: 0.2s ease;
+	}
+	.contact-card:hover { border-color: var(--accent); transform: translateX(4px); }
+	.label { color: var(--accent); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+	.value { font-family: ui-monospace, monospace; color: var(--text-main); }
+</style>

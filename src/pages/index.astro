@@ -6,12 +6,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
-// 1. Fetch all blog posts
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-
-// 2. Get only the top 3 most recent
 const recentPosts = posts.slice(0, 3);
 ---
 
@@ -25,141 +22,49 @@ const recentPosts = posts.slice(0, 3);
 		<main>
 			<section class="hero">
 				<h1>Aldin Smajlovic</h1>
-				<p class="tagline">
-					Security Student & Pentester. <br/>
-					Focusing on Offensive Security, Python Tooling, and breaking things to make them safer.
+				<p class="tagline">Security Student & Pentester @ ITH Stockholm.</p>
+				<p class="bio">
+		Aspiring penetration tester.
+		I spend most of my time keeping up with new tech and how it relates to security. 
+        When I'm not in a terminal, I'm likely producing music or behind a camera.
 				</p>
-				<div class="actions">
-					<a href="/about" class="btn primary">More about me</a>
-					<a href="https://github.com/aldinsmajlovic" target="_blank" class="btn secondary">GitHub</a>
-				</div>
-			</section>
-
 			<hr />
-
-			<section class="latest-posts">
-				<h2>Latest Research</h2>
-				<ul>
-					{
-						recentPosts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									<span class="title">{post.data.title}</span>
-									<span class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</span>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-				<div class="view-all">
-					<a href="/blog">View all archives →</a>
+				<div class="section-header">
+					<h2>Latest Research</h2>
+					<a href="/blog" class="view-all">View Archive →</a>
 				</div>
-			</section>
+				<ul class="post-list">
+					{recentPosts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<span class="title">{post.data.title}</span>
+								<span class="date"><FormattedDate date={post.data.pubDate} /></span>
+							</a>
+						</li>
+					))}
+				</ul>
 		</main>
 		<Footer />
 	</body>
 </html>
 
 <style>
-	/* HERO STYLES */
-	.hero {
-		padding: 2rem 0;
-	}
-	.hero h1 {
-		font-size: 3em;
-		margin-bottom: 0.5rem;
-		letter-spacing: -1px;
-	}
-	.tagline {
-		font-size: 1.2em;
-		color: var(--text-muted);
-		max-width: 600px;
-		margin-bottom: 2rem;
-	}
+	.hero { padding: 3rem 0; }
+	.hero h1 { font-size: 3rem; margin: 0; color: var(--text-bold); }
+	.tagline { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-top: 0.5rem; }
+	.bio { max-width: 650px; color: var(--text-main); margin-top: 1.5rem; line-height: 1.6; }
 
-	/* BUTTONS */
-	.actions {
-		display: flex;
-		gap: 1rem;
-	}
-	.btn {
-		display: inline-block;
-		padding: 0.5rem 1rem;
-		border-radius: 4px;
-		font-size: 0.9em;
-		font-weight: 600;
-		text-decoration: none;
-		transition: all 0.2s;
-	}
-	.btn.primary {
-		background: var(--accent);
-		color: #fff; /* White text on Blue button */
-		border: 1px solid var(--accent);
-	}
-	.btn.primary:hover {
-		background: var(--accent-hover);
-		border-color: var(--accent-hover);
-	}
-	.btn.secondary {
-		background: transparent;
-		color: var(--text-main);
-		border: 1px solid var(--border);
-	}
-	.btn.secondary:hover {
-		border-color: var(--text-main);
-		background: var(--bg-surface);
-	}
+	.section { padding: 2rem 0; }
+	.section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; }
+	.view-all { font-size: 0.9rem; color: var(--accent); text-decoration: none; }
 
-	/* POST LIST STYLES */
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
+	.post-list { list-style: none; padding: 0; }
+	.post-list li a { 
+		display: flex; justify-content: space-between; padding: 1rem; 
+		border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.75rem;
+		text-decoration: none; transition: 0.2s ease;
 	}
-	li {
-		margin-bottom: 1rem;
-	}
-	li a {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		padding: 1rem;
-		border: 1px solid var(--border);
-		border-radius: 6px;
-		background: var(--bg-surface);
-		text-decoration: none;
-		transition: transform 0.1s ease, border-color 0.2s;
-	}
-	li a:hover {
-		transform: translateY(-2px);
-		border-color: var(--accent);
-	}
-	.title {
-		font-weight: 600;
-		color: var(--text-main);
-	}
-	.date {
-		font-size: 0.85em;
-		color: var(--text-muted);
-		white-space: nowrap;
-		margin-left: 1rem;
-	}
-	
-	.view-all {
-		margin-top: 2rem;
-		text-align: right;
-		font-size: 0.9em;
-	}
-
-	@media (max-width: 600px) {
-		li a {
-			flex-direction: column;
-			gap: 0.5rem;
-		}
-		.date {
-			margin-left: 0;
-		}
-	}
+	.post-list li a:hover { border-color: var(--accent); background: var(--bg-surface); transform: translateY(-2px); }
+	.title { font-weight: 600; color: var(--text-bold); }
+	.date { color: var(--text-muted); font-size: 0.9rem; }
 </style>
