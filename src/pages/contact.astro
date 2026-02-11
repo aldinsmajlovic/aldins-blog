@@ -8,10 +8,6 @@ import Layout from '../layouts/BlogPost.astro';
 	pubDate={new Date('2026-01-20')}
 >
 	<div class="contact-grid">
-		<a href="#" id="email-link" class="contact-card">
-			<span class="label">Email</span>
-			<span class="value">revealing...</span>
-		</a>
 		<a href="https://linkedin.com/in/aldin-smajlovic" target="_blank" class="contact-card">
 			<span class="label">LinkedIn</span>
 			<span class="value">/in/aldin-smajlovic</span>
@@ -22,17 +18,6 @@ import Layout from '../layouts/BlogPost.astro';
 		</a>
 	</div>
 </Layout>
-
-<script>
-	const encoded = "YWxkaW5AYWxkaW5zbWFqbG92aWMuc2U=";
-	const email = atob(encoded);
-	const link = document.getElementById('email-link');
-	if (link) {
-		link.setAttribute('href', 'mailto:' + email);
-		const val = link.querySelector('.value');
-		if (val) val.textContent = email;
-	}
-</script>
 
 <style>
 	.contact-grid { display: grid; gap: 1rem; margin-top: 2rem; }
