@@ -4,6 +4,8 @@ const today = new Date();
 
 <footer>
 	&copy; {today.getFullYear()} Aldin Smajlovic. All rights reserved.
+	<span class="separator">&bull;</span>
+	<a href="/security-policy" class="security-link">Security Policy</a>
 	<div class="social-links">
 		<a href="https://www.linkedin.com/in/aldin-smajlovic/" target="_blank">
 			<span class="sr-only">LinkedIn</span>
@@ -25,6 +27,20 @@ const today = new Date();
 		padding: 2em 1em 6em 1em;
 		color: var(--text-muted);
 		text-align: center;
+		font-size: 0.95rem;
+	}
+	.separator {
+		margin: 0 0.5rem;
+		color: var(--border);
+	}
+	.security-link {
+		color: var(--text-muted);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+	}
+	.security-link:hover {
+		color: var(--accent);
+		border-bottom-color: var(--accent);
 	}
 	.social-links {
 		display: flex;

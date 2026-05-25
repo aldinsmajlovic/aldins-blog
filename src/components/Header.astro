@@ -53,12 +53,16 @@ header {
 	}
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--black);
+		color: var(--text-muted);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 	}
+	nav a:hover {
+		color: var(--accent);
+	}
 	nav a.active {
 		text-decoration: none;
+		color: var(--text-main);
 		border-bottom-color: var(--accent);
 	}
 	.social-links,

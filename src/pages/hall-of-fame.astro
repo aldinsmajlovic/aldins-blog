@@ -1,0 +1,46 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Hall of Fame - ${SITE_TITLE}`} description="Responsible Disclosure Hall of Fame" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hall-of-fame">
+				<h1>Hall of Fame</h1>
+				<p class="intro">
+					This page acknowledges security researchers who have helped secure my personal infrastructure, projects, and websites. I appreciate the time and effort spent to report vulnerabilities responsibly.
+				</p>
+				
+				<div class="halls">
+					<div class="empty-state">
+						<p>No vulnerabilities have been reported yet.</p>
+						<p class="cta">If you have found a security vulnerability in this site, please refer to the <a href="/.well-known/security.txt">security.txt</a> file for reporting instructions.</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hall-of-fame { padding: 3rem 0; }
+	.hall-of-fame h1 { font-size: 3rem; margin: 0; color: var(--text-bold); }
+	.intro { max-width: 650px; color: var(--text-main); margin-top: 1.5rem; line-height: 1.6; }
+	
+	.halls { margin-top: 3rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-surface); padding: 2rem; }
+	.empty-state { text-align: center; color: var(--text-muted); }
+	.empty-state p { margin: 0 0 1rem 0; }
+	.empty-state p:last-child { margin-bottom: 0; }
+	.cta { font-size: 0.95rem; line-height: 1.5; }
+	.cta a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+	.cta a:hover { border-bottom-color: var(--accent); }
+</style>

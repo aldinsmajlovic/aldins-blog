@@ -1,0 +1,193 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Security Policy - ${SITE_TITLE}`} description="Vulnerability Disclosure Policy" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="security-policy">
+				<h1>Vulnerability Disclosure Policy</h1>
+				<p class="intro">
+					I work in offensive security myself, so I highly encourage you to poke around my infrastructure. If you find a way to break in or bypass my controls, I want to hear about it. Let's keep it safe, ethical, and collaborative.
+				</p>
+
+				<!-- Safe Harbor -->
+				<div class="policy-section">
+					<h2>Safe Harbor</h2>
+					<p>
+						If you conduct security research and vulnerability testing in good faith and in accordance with this policy, I consider your research to be <strong>authorized</strong>. I will not initiate legal action, file complaints with your ISP or hosting providers, or support any third-party legal action against you.
+					</p>
+				</div>
+
+				<!-- Scope -->
+				<div class="policy-section">
+					<h2>1. Scope</h2>
+					<p>This policy applies to the primary domain and all subdomains under:</p>
+					<ul>
+						<li><code>aldinsmajlovic.se</code> & <code>*.aldinsmajlovic.se</code></li>
+					</ul>
+					<p>This explicitly includes:</p>
+					<ul>
+						<li><code>aldinsmajlovic.se</code> / <code>blog.aldinsmajlovic.se</code> (Personal Site & Blog)</li>
+						<li><code>hub.aldinsmajlovic.se</code> (Central Dashboard)</li>
+						<li><code>status.aldinsmajlovic.se</code> (Infrastructure Status)</li>
+						<li><code>ask.aldinsmajlovic.se</code> (Overseerr Request Portal)</li>
+						<li><code>play.aldinsmajlovic.se</code> (Minecraft Game Server)</li>
+					</ul>
+				</div>
+
+				<!-- How to Report -->
+				<div class="policy-section">
+					<h2>2. How to Report</h2>
+					<p>
+						Send all reports to <a href="mailto:security@aldinsmajlovic.se">security@aldinsmajlovic.se</a>. I highly recommend encrypting sensitive details or proof-of-concepts using my PGP key (available at <a href="/pgp-key.txt">/pgp-key.txt</a>).
+					</p>
+					<p>To help me triage your report quickly, please use the following structure in your email:</p>
+					<pre><code>**Title**: [Brief summary of the issue]
+**Target**: [Specific subdomain or service URL]
+**Description**: [What the vulnerability is and how it works]
+**Steps to Reproduce**:
+1. [Step 1]
+2. [Step 2]
+**Proof of Concept**: [Output, payloads, or links to secure screenshots]
+**Impact**: [What an attacker could achieve with this vulnerability]</code></pre>
+				</div>
+
+				<!-- Rules of Engagement -->
+				<div class="policy-section">
+					<h2>3. Rules of Engagement</h2>
+					<h3>Testing Guidelines:</h3>
+					<ul>
+						<li><strong>Proof of Concept (PoC)</strong>: To demonstrate access, only retrieve the minimum data required. For system access, outputting commands like <code>whoami</code>, <code>id</code>, or <code>hostname</code> is sufficient. Do not dump database tables, access private files, or exfiltrate private credentials.</li>
+						<li><strong>Disclosure</strong>: Please allow a reasonable timeframe for remediation before publishing details.</li>
+					</ul>
+					
+					<h3>Strictly Prohibited:</h3>
+					<ul>
+						<li><strong>Lateral Movement</strong>: Pivoting, lateral movement, or attempting to access underlying infrastructure (hypervisors, routing equipment, or internal network segments) after achieving initial access is strictly prohibited. Stop at the container or VM level.</li>
+						<li>Denial of Service (DoS/DDoS) attacks that disrupt services.</li>
+						<li>Social engineering, phishing, or physical attacks against myself or users.</li>
+						<li>Brute-forcing credentials or spamming endpoints.</li>
+					</ul>
+				</div>
+
+				<!-- Third-Party Disclaimer -->
+				<div class="policy-section">
+					<h2>4. Third-Party Infrastructure Disclaimer</h2>
+					<p>
+						Do not target third-party services or infrastructure hosting these domains. Testing must be limited to my specific configurations, applications, and deployments.
+					</p>
+				</div>
+
+				<!-- Out of Scope / Anti-Scanner Noise -->
+				<div class="policy-section">
+					<h2>5. Out of Scope & Low-Effort Submissions</h2>
+					<p class="warning-text">
+						<strong>Notice regarding automated scanners:</strong> Submissions consisting entirely of copy-pasted automated scanner output without a manual, verified proof-of-concept demonstrating direct business or security impact will be ignored. 
+					</p>
+					<p>The following vulnerabilities and findings are explicitly out of scope and will not be triaged:</p>
+					<ul>
+						<li>Missing HTTP security headers (e.g. <code>CSP</code>, <code>X-Frame-Options</code>, <code>HSTS</code>) without a working exploit proof-of-concept.</li>
+						<li>Missing SPF, DKIM, or DMARC records (unless it leads to a direct domain takeover).</li>
+						<li>SSL/TLS best practices (e.g. cipher suites, certificate pinning) that do not directly expose traffic.</li>
+						<li>Cookie flags (e.g. <code>HttpOnly</code>, <code>Secure</code>) on non-sensitive session handlers.</li>
+						<li>Clickjacking on unauthenticated public-facing pages.</li>
+						<li>Software version disclosure or verbose error messages.</li>
+					</ul>
+				</div>
+
+				<!-- SLA -->
+				<div class="policy-section">
+					<h2>6. Service Level Agreement (SLA)</h2>
+					<p>
+						I respect your time and efforts. I commit to the following response timeline:
+					</p>
+					<ul>
+						<li><strong>Acknowledgment</strong>: Best effort within 3 business days of report submission.</li>
+						<li><strong>Triage & Remediation</strong>: Regular updates on the fixing progress until resolved.</li>
+					</ul>
+				</div>
+
+				<!-- Recognition -->
+				<div class="policy-section">
+					<h2>7. Recognition, Resumes & Write-ups</h2>
+					<ul>
+						<li>I cannot offer financial compensation (bug bounties).</li>
+						<li>Ethical and valid reports will be credited on my public <a href="/hall-of-fame">Hall of Fame</a>.</li>
+						<li><strong>Write-ups & Resumes</strong>: Once a vulnerability has been fixed, you are fully authorized to write blog posts, document it on your resume, or share it on LinkedIn. If you wish, I will review your write-up beforehand and cross-promote it to my professional network.</li>
+					</ul>
+				</div>
+
+				<!-- Sign-off -->
+				<div class="policy-section">
+					<p class="happy-hacking">Happy hacking!</p>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.security-policy { padding: 3rem 0; }
+	.security-policy h1 { font-size: 3rem; margin: 0 0 1.5rem 0; color: var(--text-bold); }
+	.intro { max-width: 650px; color: var(--text-main); line-height: 1.6; font-size: 1.15rem; margin-bottom: 2.5rem; }
+	
+	.policy-section { margin-bottom: 2.5rem; }
+	.policy-section h2 { font-size: 1.5rem; color: var(--text-bold); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+	.policy-section h3 { font-size: 1.1rem; color: var(--accent); margin-top: 1.25rem; margin-bottom: 0.5rem; font-family: ui-monospace, monospace; }
+	.policy-section ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
+	.policy-section li { color: var(--text-main); margin-bottom: 0.5rem; line-height: 1.6; }
+
+	.warning-text {
+		color: var(--accent-hover) !important;
+		font-size: 0.95rem;
+		margin-bottom: 1rem;
+		line-height: 1.6;
+	}
+	
+	code {
+		font-family: ui-monospace, monospace;
+		background: var(--bg-body);
+		padding: 2px 6px;
+		border-radius: 4px;
+		color: var(--accent-hover);
+		font-size: 0.9em;
+		border: 1px solid var(--border);
+	}
+	
+	pre {
+		padding: 1.25rem;
+		background-color: var(--bg-surface) !important;
+		border: 1px solid var(--border);
+		border-radius: 6px;
+		overflow-x: auto;
+		margin-top: 1rem;
+	}
+
+	pre > code {
+		all: unset;
+		font-family: ui-monospace, monospace;
+		color: var(--text-main);
+		font-size: 0.9em;
+	}
+
+	a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+	a:hover { border-bottom-color: var(--accent); }
+
+	.happy-hacking {
+		font-family: ui-monospace, monospace;
+		color: var(--accent);
+		font-weight: bold;
+		font-size: 1.1rem;
+		margin-top: 2rem;
+	}
+</style>
