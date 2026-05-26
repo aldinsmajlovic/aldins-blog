@@ -28,45 +28,6 @@ const recentPosts = posts.slice(0, 3);
 				</p>
 			</section>
 
-			<section class="toolkit-section">
-				<h2>Toolkit</h2>
-				<div class="toolkit-grid">
-					<div class="toolkit-column">
-						<h3>Systems & Shells</h3>
-						<ul>
-							<li>Arch Linux</li>
-							<li>Kali Linux</li>
-							<li>Hyprland</li>
-							<li>Zsh (Kitty)</li>
-							<li>Proxmox</li>
-							<li>Docker</li>
-						</ul>
-					</div>
-					<div class="toolkit-column">
-						<h3>Languages & Core</h3>
-						<ul>
-							<li>Python</li>
-							<li>Go</li>
-							<li>Git</li>
-						</ul>
-					</div>
-					<div class="toolkit-column">
-						<h3>Offensive & Web</h3>
-						<ul>
-							<li>Burp Suite Professional</li>
-							<li>Nmap</li>
-							<li>Nuclei</li>
-							<li>FFuf</li>
-							<li>Feroxbuster</li>
-							<li>SQLmap</li>
-							<li>NetExec</li>
-							<li>Impacket</li>
-							<li>Hashcat</li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<hr />
 				<div class="section-header">
 					<h2>Latest Research</h2>
 					<a href="/blog" class="view-all">View Archive →</a>
@@ -92,16 +53,6 @@ const recentPosts = posts.slice(0, 3);
 	.pronouns { font-size: 1.2rem; color: var(--text-muted); font-weight: normal; }
 	.tagline { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-top: 0.5rem; }
 	.bio { max-width: 650px; color: var(--text-main); margin-top: 1.5rem; line-height: 1.6; }
-
-	.toolkit-section { padding: 1rem 0 3rem 0; }
-	.toolkit-section h2 { font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-bold); }
-	.toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-	.toolkit-column h3 { font-size: 1.1rem; color: var(--accent); font-family: ui-monospace, monospace; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-	.toolkit-column ul { list-style: none; padding: 0; margin: 0; }
-	.toolkit-column li { color: var(--text-main); font-size: 0.95rem; margin-bottom: 0.4rem; font-family: ui-monospace, monospace; }
-	@media (max-width: 720px) {
-		.toolkit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-	}
 
 	.section { padding: 2rem 0; }
 	.section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; }
