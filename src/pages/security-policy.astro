@@ -36,11 +36,12 @@ import { SITE_TITLE } from '../consts';
 					</ul>
 					<p>This explicitly includes:</p>
 					<ul>
-						<li><code>aldinsmajlovic.se</code> / <code>blog.aldinsmajlovic.se</code> (Personal Site & Blog)</li>
-						<li><code>hub.aldinsmajlovic.se</code> (Central Dashboard)</li>
-						<li><code>status.aldinsmajlovic.se</code> (Infrastructure Status)</li>
-						<li><code>ask.aldinsmajlovic.se</code> (Overseerr Request Portal)</li>
-						<li><code>play.aldinsmajlovic.se</code> (Minecraft Game Server)</li>
+						<li><code>aldinsmajlovic.se</code></li>
+						<li><code>blog.aldinsmajlovic.se</code></li>
+						<li><code>hub.aldinsmajlovic.se</code></li>
+						<li><code>status.aldinsmajlovic.se</code></li>
+						<li><code>ask.aldinsmajlovic.se</code></li>
+						<li><code>play.aldinsmajlovic.se</code></li>
 					</ul>
 				</div>
 
@@ -67,6 +68,7 @@ import { SITE_TITLE } from '../consts';
 					<h3>Testing Guidelines:</h3>
 					<ul>
 						<li><strong>Proof of Concept (PoC)</strong>: To demonstrate access, only retrieve the minimum data required. For system access, outputting commands like <code>whoami</code>, <code>id</code>, or <code>hostname</code> is sufficient. Do not dump database tables, access private files, or exfiltrate private credentials.</li>
+						<li><strong>Automated Discovery & Fuzzing</strong>: Most of the infrastructure is behind Cloudflare, and aggressive scanning will trigger automatic blocks. Automated content/directory discovery is permitted, but you must limit your tools to a rate of 20 requests per second with a maximum of 10 threads (e.g. using <code>--rate 20 -t 10</code> in tools like Feroxbuster or FFuf).</li>
 						<li><strong>Disclosure</strong>: Please allow a reasonable timeframe for remediation before publishing details.</li>
 					</ul>
 					
@@ -75,7 +77,7 @@ import { SITE_TITLE } from '../consts';
 						<li><strong>Lateral Movement</strong>: Pivoting, lateral movement, or attempting to access underlying infrastructure (hypervisors, routing equipment, or internal network segments) after achieving initial access is strictly prohibited. Stop at the container or VM level.</li>
 						<li>Denial of Service (DoS/DDoS) attacks that disrupt services.</li>
 						<li>Social engineering, phishing, or physical attacks against myself or users.</li>
-						<li>Brute-forcing credentials or spamming endpoints.</li>
+						<li>Credential brute-forcing (e.g. automated login guessing attacks) and endpoint spamming/fuzzing beyond the allowed rate limit threshold.</li>
 					</ul>
 				</div>
 
