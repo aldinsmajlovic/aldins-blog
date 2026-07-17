@@ -57,7 +57,7 @@ I stopped there. Minimum data to prove the finding, PII redacted in screenshots,
 
 Neither Magento nor the marketplace extension was doing anything wrong individually.
 
-Magento's `pickupLocations` is public by design. It exists so shoppers can find nearby physical store locations without logging in. The default type includes fields like name, email, street, city, postcode — fine for a business storefront's contact details.
+Magento's `pickupLocations` is public by design. It exists so shoppers can find nearby physical store locations without logging in. The default type includes fields like name, email, street, city, postcode, fine for a business storefront's contact details.
 
 The marketplace extension maps each seller to a pickup location so buyers can arrange collection. That also makes sense on its own.
 
@@ -67,6 +67,6 @@ It's the kind of bug that makes it through review because every individual piece
 
 ## Disclosure
 
-The program runs as a public VDP that can get you invited to a private bug bounty program for high/critical findings. Reported through it, triaged in about 21 hours, accepted as Critical.
+The program runs as a public VDP that can get you invited to a private bug bounty program for severe findings. Reported through it, triaged in about 21 hours, accepted as Critical.
 
 Resolved. Bounty paid: **$1,000**. My first ever bug bounty submission.
