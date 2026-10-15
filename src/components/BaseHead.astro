@@ -55,3 +55,22 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- For the curious. -->
+<script is:inline>
+	console.log(
+		'%c👋 Poking around? Good instinct.\n' +
+			'%cI run a vulnerability disclosure program.\n' +
+			'%c  Rules: %c/security-policy%c   Keys: %c/.well-known/security.txt\n' +
+			'%cFind something real and you will end up on %c/hall-of-fame%c.',
+		'color:#60a5fa;font-weight:bold;font-size:13px',
+		'color:#e4e4e7',
+		'color:#a1a1aa',
+		'color:#93c5fd',
+		'color:#a1a1aa',
+		'color:#93c5fd',
+		'color:#a1a1aa',
+		'color:#93c5fd',
+		'color:#a1a1aa',
+	);
+</script>

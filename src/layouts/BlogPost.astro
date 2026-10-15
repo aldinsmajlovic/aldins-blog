@@ -6,9 +6,15 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type NavPost = { slug: string; title: string };
+type Props = CollectionEntry<'blog'>['data'] & {
+	minutes?: number;
+	prevPost?: NavPost;
+	nextPost?: NavPost;
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, minutes, prevPost, nextPost } =
+	Astro.props;
 ---
 
 <html lang="en">
@@ -49,8 +55,57 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin-bottom: 0.5em;
 				color: var(--text-muted);
 			}
+			.date .dot {
+				margin: 0 0.4rem;
+				color: var(--border);
+			}
+			.subtitle {
+				margin: 0 auto 1em auto;
+				max-width: 42rem;
+				color: var(--text-muted);
+				font-size: 1.15rem;
+				line-height: 1.5;
+			}
 			.last-updated-on {
 				font-style: italic;
+			}
+			.post-nav {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+				margin: 3rem 0 1rem 0;
+			}
+			.nav-card {
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+				padding: 1rem 1.25rem;
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+			.nav-card:hover {
+				border-color: var(--accent);
+				background: var(--bg-surface);
+				transform: translateY(-2px);
+			}
+			.nav-card.next {
+				text-align: right;
+			}
+			.nav-dir {
+				font-size: 0.8rem;
+				color: var(--accent);
+			}
+			.nav-title {
+				color: var(--text-bold);
+				font-weight: 600;
+				line-height: 1.3;
+			}
+			@media (max-width: 720px) {
+				.post-nav {
+					grid-template-columns: 1fr;
+				}
 			}
 		</style>
 	</head>
@@ -66,6 +121,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					<div class="title">
 						<div class="date">
 							<FormattedDate date={pubDate} />
+							{minutes && (
+								<>
+									<span class="dot">&bull;</span>
+									{minutes} min read
+								</>
+							)}
 							{
 								updatedDate && (
 									<div class="last-updated-on">
@@ -75,9 +136,30 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 							}
 						</div>
 						<h1>{title}</h1>
+						{minutes && <p class="subtitle">{description}</p>}
 						<hr />
 					</div>
 					<slot />
+					{(prevPost || nextPost) && (
+						<nav class="post-nav">
+							{prevPost ? (
+								<a href={`/blog/${prevPost.slug}/`} class="nav-card prev">
+									<span class="nav-dir">&larr; Older post</span>
+									<span class="nav-title">{prevPost.title}</span>
+								</a>
+							) : (
+								<span />
+							)}
+							{nextPost ? (
+								<a href={`/blog/${nextPost.slug}/`} class="nav-card next">
+									<span class="nav-dir">Newer post &rarr;</span>
+									<span class="nav-title">{nextPost.title}</span>
+								</a>
+							) : (
+								<span />
+							)}
+						</nav>
+					)}
 				</div>
 			</article>
 		</main>
